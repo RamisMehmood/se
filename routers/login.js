@@ -11,6 +11,7 @@ router.use(passport.session())
 router.get('/', (req, res) => {
     console.log(req.session);
     console.log(req.sessionID)
+    return res.send(200);
 });
 
 router.post('/', passport.authenticate("local") , (req,res) => {

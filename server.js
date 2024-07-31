@@ -3,11 +3,17 @@ import pool from './db.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from "passport";
-import loginRouter from './routers/login.js';
 import bodyParser from 'body-parser'
+
+import loginRouter from './routers/login.js';
 import createWorkoutRouter from './routers/create-workout.js'
 import editRouter from './routers/edit.js'
 import completedRouter from './routers/completed.js'
+import progressRouter from './routers/progress.js'
+import registerRouter from './routers/register.js'
+import supportRouter from './routers/support.js'
+import calculationsRouter from './routers/calculations.js'
+
 
 const app = express()
 
@@ -29,6 +35,27 @@ app.use('/login', loginRouter);
 app.use('/create-workout', createWorkoutRouter);
 app.use('/edit', editRouter )
 app.use('/completed' , completedRouter)
+app.use('/progress',progressRouter)
+app.use('/register', registerRouter)
+app.use('/support', supportRouter)
+app.use('/calculations', calculationsRouter)
+
+app.get('/', async (req,res) => {
+    const result = await pool.query('SELECT * FROM users')
+    return res.send(result.rows);
+})
+
+export function authentication(req,res,next){
+if(req.isAuthenticated()){
+    return next();
+}
+res.status(401).send("You need to Log in first");
+}
+
+app.listen(4000, () => {
+    console.log("Server running on port 4000");
+})
+
 
 // HOME PAGE: Login/Register
 
@@ -38,28 +65,5 @@ app.use('/completed' , completedRouter)
 
 // => PAGE 1 : Create/Edit Workout && Progress-Tracker && Log-A-completedWorkout
 
-app.get('/', async (req,res) => {
-    const result = await pool.query('SELECT * FROM users')
-    return res.send(result.rows);
-})
 
-app.post('/register' , async (req,res) => {
-console.log("Registartion Started");
-const {username,password} = req.body;
-try{
-    const result = await pool.query('SELECT userid FROM users Where username = $1', [username])
-    if(result.rows[0]) { return res.send( {message : "Username Already Exists , Try Again"})}
-
-    await pool.query('Insert Into users (username, password) VALUES ($1 , $2 )', [username , password])
-    return res.send(200)
-} catch(err) {
-    console.log(err);
-    res.sendStatus(500);
-}
-})
-
-
-app.listen(4000, () => {
-    console.log("Server running on port 4000");
-})
 

@@ -1,10 +1,11 @@
 import express from "express";
 import pool from '../db.js';
+import {authentication} from '../server.js'
 
 const router = express.Router();
 router.use(express.json());
 
-router.get('/', async (req, res) => {
+router.get('/', authentication, async (req, res) => {
     try {
       const upperBodyResult = await pool.query('SELECT name FROM UpperBody');
       const lowerBodyResult = await pool.query('SELECT name FROM LowerBody');
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.post('/add' , async (req,res) => {
+  router.post('/add' ,authentication, async (req,res) => {
     const {table , name} = req.body;
     try {
       const result = await pool.query(`Insert into ${table} (name) Values ($1)` , [name]);
@@ -35,11 +36,12 @@ router.get('/', async (req, res) => {
 
   router.post('/', async (req, res) => {
     const { workouts, totalSets } = req.body;
+    const user_id = req.session.passport.user
   
     try {
       const result = await pool.query(
-        'INSERT INTO workoutPlan (workouts, totalSets) VALUES ($1, $2)',
-        [JSON.stringify(workouts), totalSets]
+        'INSERT INTO workoutPlan (workouts, totalSets,user_id) VALUES ($1, $2, $3)',
+        [JSON.stringify(workouts), totalSets,user_id]
       );
       res.status(201).send("Created");
     } catch (error) {
