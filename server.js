@@ -13,6 +13,7 @@ import progressRouter from './routers/progress.js'
 import registerRouter from './routers/register.js'
 import supportRouter from './routers/support.js'
 import calculationsRouter from './routers/calculations.js'
+import searchRouter from "./routers/search.js"
 
 
 const app = express()
@@ -39,6 +40,7 @@ app.use('/progress',progressRouter)
 app.use('/register', registerRouter)
 app.use('/support', supportRouter)
 app.use('/calculations', calculationsRouter)
+app.use('/search' , searchRouter)
 
 app.get('/', async (req,res) => {
     const result = await pool.query('SELECT * FROM users')
