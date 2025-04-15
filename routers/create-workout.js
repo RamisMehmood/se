@@ -34,7 +34,7 @@ router.get('/', authentication, async (req, res) => {
     }
   })
 
-  router.post('/', async (req, res) => {
+  router.post('/',authentication, async (req, res) => {
     const { workouts, totalSets } = req.body;
     const user_id = req.session.passport.user
   

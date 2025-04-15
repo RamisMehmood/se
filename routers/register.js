@@ -22,8 +22,7 @@ function generateOTP() {
   router.post('/', async (req, res) => {
 
     const { username, password, email} = req.body;
-    req.session.registrationData = { username, password, email }; // Store registration data in session
-    console.log(req.session);
+    req.session.registrationData = { username, password, email }; // store registration data in session
   
     const newOtp = generateOTP();
       const mailOptions = {
@@ -39,7 +38,7 @@ function generateOTP() {
           return res.status(500).send({ message: 'Error sending OTP' });
         }
 
-        // Store OTP in memory (or database)
+        // Store OTP
         otpStore[email] = newOtp;
         return res.status(200).send({ message: 'OTP sent successfully. Please verify the OTP.' });
       });
