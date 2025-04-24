@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
 
 function LoginPage() {
@@ -14,12 +15,12 @@ function LoginPage() {
   return (
     <div className="login-centered-container">
       <div className="login-box">
-        <img src="/images/image1.png" alt="FiTrack Logo" className="login-logo" />
+        <img src= "/logo.png" alt="FiTrack Logo" className="logo" />
         <h2 className="login-heading">Log In</h2>
         <form onSubmit={handleSubmit} className="login-form">
-          <input
+          <input  
             type="email"
-            placeholder="Email"
+            placeholder="UserName"
             className="login-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -36,8 +37,7 @@ function LoginPage() {
           <button type="submit" className="login-button">Log In</button>
         </form>
         <div className="login-links">
-          <a href="/forgot-password" className="login-link">Forgot Password?</a>
-          <a href="/signup" className="login-link">Sign Up</a>
+          <Link to="/register" className="login-link">Sign Up</Link>
         </div>
       </div>
     </div>

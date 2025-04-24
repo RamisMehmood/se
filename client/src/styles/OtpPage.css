@@ -4,18 +4,18 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #1F2730; /* Dark background like in your screenshot */
+  background-color: #1F2730;
 }
 
-.login-centered-container {
+.otp-centered-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.login-box {
-  background-color: #ffffff !important; /* Yellow box */
+.otp-box {
+  background-color: #ffffff; /* White box like in Register */
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -24,34 +24,42 @@ body {
   text-align: center;
 }
 
-.login-logo {
+.otp-logo {
   width: 120px;
   margin-bottom: 20px;
 }
 
-.login-heading {
-  font-size: 28px;
+.otp-heading {
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #333333;
 }
 
-.login-form {
+.otp-instruction {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 25px;
+}
+
+.otp-form {
   display: flex;
   flex-direction: column;
 }
 
-.login-input {
+.otp-input {
   padding: 12px 15px;
   margin-bottom: 20px;
   border: 1px solid #cccccc;
   border-radius: 8px;
   font-size: 16px;
-  background-color: #1e1e1e;
-  color: #ffffff;
+  background-color: #f9f9f9;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
-.login-button {
+.otp-button {
   padding: 12px 15px;
   background-color: #62c8a0;
   color: #ffffff;
@@ -62,22 +70,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.login-button:hover {
+.otp-button:hover {
   background-color: #4dbd8e;
-}
-
-.login-links {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.login-link {
-  color: #62c8a0;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.login-link:hover {
-  text-decoration: underline;
 }

@@ -15,15 +15,26 @@ import supportRouter from './routers/support.js'
 import calculationsRouter from './routers/calculations.js'
 import searchRouter from "./routers/search.js"
 
+import cors from 'cors';
 
 const app = express()
+
+app.use(cors({
+    origin: 'http://localhost:3000', // your frontend origin
+    credentials: true               // allow cookies / sessions
+  }));
 
 app.use(cookieParser('omlandahh'));
 app.use(session({
   secret: 'omlandahh',
   saveUninitialized: false,
   resave: false,
-  cookie: { maxAge: 60000 * 60 }
+  cookie: {
+    secure: false,            // set to true in production with HTTPS
+    httpOnly: true,
+    sameSite: 'none',           // or 'none' if using HTTPS
+    maxAge: 60000 * 60 
+  }
 }));
 
 app.use(passport.initialize());
