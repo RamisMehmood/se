@@ -1,23 +1,44 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/OtpPage.css';
 
-function OtpPage() {
+function OTPPage() {
   const [otp, setOtp] = useState('');
+  const navigate = useNavigate(); // using react-router navigation instead of window.location
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('OTP Entered:', otp);
 
-    // TODO: Add routing logic here after successful OTP verification
-    // For example: navigate("/dashboard") or similar
+    try {
+      const response = await fetch('http://localhost:4000/register/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // important: send session cookies
+        body: JSON.stringify({ otp }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('OTP verified:', data.message);
+        navigate('/create'); // Navigate to create page
+      } else {
+        console.error('OTP error:', data.message);
+        navigate('/error');  // Navigate to error page
+      }
+    } catch (error) {
+      console.error('Request error:', error);
+      navigate('/error'); // Navigate to error page if request fails
+    }
   };
 
   return (
     <div className="otp-centered-container">
       <div className="otp-box">
-        <img src="/logo.png" alt="FiTrack Logo" className="otp-logo" />
-        <h2 className="otp-heading">Enter Verification Code</h2>
-        <p className="otp-instruction">We sent a 6-digit code to your email</p>
+        <img src="/logo.png" alt="Logo" className="otp-logo" />
+        <h1 className="otp-heading">Verify OTP</h1>
         <form onSubmit={handleSubmit} className="otp-form">
           <input
             type="text"
@@ -25,7 +46,6 @@ function OtpPage() {
             className="otp-input"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
-            maxLength={6}
             required
           />
           <button type="submit" className="otp-button">Verify</button>
@@ -35,4 +55,4 @@ function OtpPage() {
   );
 }
 
-export default OtpPage;
+export default OTPPage;

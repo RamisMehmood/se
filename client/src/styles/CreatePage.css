@@ -1,0 +1,146 @@
+/* CreateWorkoutPage.css */
+
+.createworkout-container {
+    min-height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+}
+  
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; /* blue */
+    padding: 10px 30px;
+}
+  
+.navbar-logo {
+    height: 50px;
+}
+  
+.navbar-links {
+    display: flex;
+    gap: 15px;
+}
+  
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+  
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+  
+.active-link {
+    background: white;
+    color: #007bff; /* blue */
+}
+  
+.page-title {
+    text-align: center;
+    margin: 30px 0 20px 0;
+    font-size: 32px;
+    color: #333;
+}
+  
+.workout-form {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+  
+.field-section {
+    background: rgb(250, 250, 253);
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.field-section:hover {
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
+  
+.field-img {
+    width: 80%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+  
+.dropdown summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Smooth dropdown animation */
+.dropdown summary::after {
+    content: "▼";
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.dropdown[open] summary::after {
+    content: "▲";
+    transform: rotate(180deg);
+}
+  
+.checkbox-label {
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+}
+  
+.sets-input {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sets-input:hover,
+.sets-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+  
+.save-button {
+    background-color: #ffffff; /* blue */
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+  
+.save-button:hover {
+    background-color: #0069d9; /* slightly darker blue on hover */
+}
+  
+.success-message {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
