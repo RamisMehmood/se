@@ -23,7 +23,7 @@ function OTPPage() {
 
       if (response.ok) {
         console.log('OTP verified:', data.message);
-        navigate('/create'); // Navigate to create page
+        navigate('/'); // Navigate to home page
       } else {
         console.error('OTP error:', data.message);
         navigate('/error');  // Navigate to error page
