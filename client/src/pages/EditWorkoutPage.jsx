@@ -81,6 +81,7 @@ function EditWorkoutPage() {
         <img src="/logo.png" alt="FITRACK Logo" className="navbar-logo" />
         <div className="navbar-links">
           <Link to="/register" className="nav-link">Register</Link>
+          <Link to="/completed" className="nav-link">Completed</Link>
           <Link to="/edit" className="nav-link active-link">Edit</Link>
           <Link to="/create" className="nav-link">Create</Link>
           <Link to="/calculations" className="nav-link">Calculations</Link>

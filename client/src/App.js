@@ -7,6 +7,10 @@ import ErrorPage from './pages/ErrorPage.jsx';
 import CreatePage from './pages/CreatePage.jsx';
 import EditPage from './pages/EditPage.jsx';
 import EditWorkoutPage from './pages/EditWorkoutPage.jsx';
+import ProgressPage from './pages/ProgressPage.jsx';
+import CompletedPage from './pages/CompletedPage.jsx';
+import CalculationsPage from './pages/CalculationsPage.jsx';
+import SupportPage from './pages/SupportPage.jsx';
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
         <Route path="/create" element={<CreatePage />} />
         <Route path="/edit" element={<EditPage />} />
         <Route path="/edit-workout/:id" element={<EditWorkoutPage />} /> {/* <-- added this */}
+        <Route path="/progress" element={<ProgressPage />} />
+        <Route path="/completed" element={<CompletedPage />} />
+        <Route path="/calculations" element={<CalculationsPage />} />
+        <Route path="/support" element={<SupportPage />} />
       </Routes>
     </BrowserRouter>
   );
